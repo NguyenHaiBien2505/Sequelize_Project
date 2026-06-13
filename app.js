@@ -4,7 +4,7 @@ const { dbConnect, sequelize } = require('./config/dbConnect');
 const { User } = require('./model/userModel');
 const { UserDetails } = require('./model/userDetails');
 const app = express();
-const port = 3000;
+const port = 8080;
 
 app.use('/', router);
 
@@ -13,9 +13,15 @@ app.use('/', router);
 // User.sync({ alter: true }); // Cập nhật bảng nếu có sự thay đổi trong model
 // UserDetails.sync({ alter: true }); // Cập nhật bảng nếu có sự thay đổi trong model
 
-sequelize.sync({ force: true }).then(() => {
-    console.log('All models were synchronized successfully.');
-});
+(async () => {
+    try {
+        await sequelize.sync({ force: true }).then
+            console.log('All models were synchronized successfully.');
+    } catch (error) {
+        console.log('Error synchronized database', error);
+
+    }
+})();
 
 app.listen(port, async () => {
     console.log(`Server is running on http://localhost:${port}`);
