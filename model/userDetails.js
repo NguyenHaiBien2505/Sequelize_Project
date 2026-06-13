@@ -1,32 +1,27 @@
 const { DataTypes, Model } = require('sequelize');
 const { sequelize } = require('../config/dbConnect');
 
-class User extends Model {}
+class UserDetails extends Model { }
 
-User.init({
+UserDetails.init({
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },
-    firstName: {
+    address: {
         type: DataTypes.STRING,
         allowNull: false,
-        defaultValue: 'bin'
     },
-    lastName: {
+    phoneNumber: {
         type: DataTypes.STRING,
-        defaultValue: 'nguyen'
-    },
-    email: {
-        type: DataTypes.STRING
     }
 }, {
     sequelize,
-    tableName: 'users',
+    tableName: 'user_details',
 });
 
-console.log(User === sequelize.models.User);
+console.log(UserDetails === sequelize.models.UserDetails);
 
 
-module.exports = {User};
+module.exports = { UserDetails };
