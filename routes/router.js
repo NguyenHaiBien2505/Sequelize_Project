@@ -1,9 +1,10 @@
 const express = require('express');
-const { insert, insertDemo } = require('../controller/userController');
+const { insert, insertDemo, queryDemo } = require('../controller/userController');
 const router = express.Router();
 
 // router.get('/register', insert);
 router.get('/demo', insertDemo);
+router.get('/query', queryDemo);
 
 
 module.exports = router;

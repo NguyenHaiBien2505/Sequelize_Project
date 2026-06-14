@@ -1,3 +1,4 @@
+const { Op } = require("sequelize");
 const { sequelize } = require("../config/dbConnect");
 const { User } = require("../model/userModel");
 
@@ -60,7 +61,43 @@ const insertDemo = async (req, res, next) => {
     return res.json(usersData);
 }
 
+const queryDemo = async (req, res) => {
+    // SELECT * FROM WHERE ...
+    // const data = await User.findAll({
+    //     where:{
+    //         firstName:'bin1',
+    //         isActive: true
+    //     }
+    // })
+    // res.json(data);
+
+    // using sequelize oparation
+    // const data = await User.findAll({
+    //     where: {
+    //         id: {
+    //             // [Op.eq]: 2
+    //             // [Op.in] : [1,3]
+    //             [Op.and] : [{id : 1},{isActive : true}]
+    //         }
+    //     }
+    // });
+    // res.json(data);
+
+
+    // update 
+
+    const updateUser = await User.update({
+        lastName: 'hahaha'
+    }, {
+        where: {
+            id: 3
+        }
+    });
+    res.json(updateUser)
+}
+
 module.exports = {
     insert,
-    insertDemo
+    insertDemo,
+    queryDemo
 }
