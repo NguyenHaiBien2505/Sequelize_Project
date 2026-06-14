@@ -20,6 +20,10 @@ User.init({
     },
     email: {
         type: DataTypes.STRING
+    },
+    isActive:{
+        type: DataTypes.BOOLEAN,
+        defaultValue: true
     }
 }, {
     sequelize,
